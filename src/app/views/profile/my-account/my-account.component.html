@@ -1,0 +1,9 @@
+<div class="wrapper">
+  <h1> MI CUENTA </h1>
+  <div class="account">
+    <img class="account__image" [src]="account && account.avatar" alt="" appImage>
+    <p class="account__text">Nombre: {{ account && account.name }} </p>
+    <p class="account__text">Rol: {{ account && account.role === 'admin' ? 'Administrador' : 'Cliente' }} </p>
+    <p class="account__text">Email: {{ account && account.email }} </p>
+  </div>
+</div>

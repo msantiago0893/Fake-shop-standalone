@@ -1,0 +1,31 @@
+<h1> CARRITO </h1>
+
+<ul *ngIf="(cartItems$ | async)?.length ; else carrito">
+  <li class="card" *ngFor="let product of cartItems$ | async">
+    <div class="product">
+      <img class="card__img" [src]="product.images[0]" alt="product" appImage>
+      <div class="description">
+        <p class="description__title">{{ product.title }}</p>
+        <p class="description__text"> Cantidad: {{ product.quantity }}</p>
+        <p class="description__text">{{ product.price | currency:'MXN ':'symbol':'1.2-2' }}</p>
+      </div>
+    </div>
+    <div class="row">
+      <button mat-button class="btn-control" color="accent" (click)="removeOneProduct(product.id)">-</button>
+      <button mat-button class="btn-control" color="primary" (click)="addCart(product)">+</button>
+      <button mat-button color="warn" (click)="remove(product.id)">Eliminar</button>
+    </div>
+  </li>
+  <p class="subtotal"> <span class="subtotal--bold">
+      Subtotal: </span> {{ (subtotal$ | async) | currency:'MXN ':'symbol':'1.2-2' }}
+  </p>
+
+  <div class="footer">
+    <button mat-raised-button class="footer__btn" color="accent" (click)="clear()"> Limpiar </button>
+    <button mat-raised-button class="footer__btn" color="primary"> Pagar </button>
+  </div>
+</ul>
+
+<ng-template #carrito>
+  <app-empty msg="No cuenta con productos en el carrito"></app-empty>
+</ng-template>

@@ -1,0 +1,59 @@
+<div class="wrapper">
+  <h1 class="wrapper__title"> {{ idUser ? 'Editar usuario' : 'Agregar usuario' }} </h1>
+  <mat-divider class="wrapper__divider"></mat-divider>
+  <br>
+
+  <form class="form" [formGroup]="myForm" novalidate>
+    <div class="form__grid">
+      <mat-form-field class="form__input" appearance="fill">
+        <mat-label>Nombre</mat-label>
+        <input matInput formControlName="name">
+        <mat-error *ngIf="input['name'].touched && input['name'].invalid">
+          <span *ngIf="input['name'].errors">Nombre invalido</span>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="form__input" appearance="fill">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email">
+        <mat-error *ngIf="input['email'].touched && input['email'].invalid">
+          <span *ngIf="input['email'].errors">Email invalido</span>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="form__input" appearance="fill">
+        <mat-label>Contraseña</mat-label>
+        <input type="password" matInput formControlName="password">
+        <mat-error *ngIf="input['password'].touched && input['password'].invalid">
+          <span *ngIf="input['password'].errors">Contraseña invalida</span>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Rol</mat-label>
+        <mat-select formControlName="role">
+          <mat-option value="admin"> Administrador </mat-option>
+          <mat-option value="customer"> Cliente </mat-option>
+        </mat-select>
+        <mat-error *ngIf="input['role'].touched && input['role'].invalid">
+          <span *ngIf="input['role'].errors">Rol invalido</span>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="form__input" appearance="fill">
+        <mat-label>Imagen</mat-label>
+        <input matInput formControlName="avatar">
+        <mat-error *ngIf="input['avatar'].touched && input['avatar'].invalid">
+          <span *ngIf="input['avatar'].errors">Url de imagen invalido</span>
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <button class="form__save" mat-raised-button color="primary" [disabled]="myForm.invalid"
+      (click)=" idUser ? update() : save()">
+      Entrar
+    </button>
+
+  </form>
+
+</div>

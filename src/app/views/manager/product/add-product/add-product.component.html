@@ -1,0 +1,56 @@
+<div class="wrapper">
+  <h1 class="wrapper__title"> {{ idProduct ? 'Editar producto' : 'Agregar producto' }} </h1>
+  <mat-divider class="wrapper__divider"></mat-divider>
+  <br>
+
+  <form class="form" [formGroup]="myForm" novalidate>
+    <div class="form__grid">
+      <mat-form-field class="form__input" appearance="fill">
+        <mat-label>Nombre</mat-label>
+        <input matInput formControlName="title">
+        <mat-error *ngIf="input['title'].touched && input['title'].invalid">
+          <span *ngIf="input['title'].errors">Nombre invalido</span>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="form__input" appearance="fill">
+        <mat-label>Precio</mat-label>
+        <input matInput formControlName="price">
+        <mat-error *ngIf="input['price'].touched && input['price'].invalid">
+          <span *ngIf="input['price'].errors">Precio invalido</span>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="form__input" appearance="fill">
+        <mat-label>Descripción</mat-label>
+        <input type="text" matInput formControlName="description">
+        <mat-error *ngIf="input['description'].touched && input['description'].invalid">
+          <span *ngIf="input['description'].errors">Descripción invalido</span>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Categoria</mat-label>
+        <mat-select formControlName="categoryId">
+          <mat-option *ngFor="let item of categories" [value]="item.id"> {{ item.name }} </mat-option>
+        </mat-select>
+        <mat-error *ngIf="input['categoryId'].touched && input['categoryId'].invalid">
+          <span *ngIf="input['categoryId'].errors">Categoria invalido</span>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="form__input" appearance="fill">
+        <mat-label>Imagen</mat-label>
+        <input matInput formControlName="image">
+        <mat-error *ngIf="input['image'].touched && input['image'].invalid">
+          <span *ngIf="input['image'].errors">Url de imagen invalido</span>
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <button class="form__save" mat-raised-button color="primary" [disabled]="myForm.invalid"
+      (click)="save()">
+      {{ idProduct ? 'Actualizar' : 'Guardar' }}
+    </button>
+  </form>
+</div>

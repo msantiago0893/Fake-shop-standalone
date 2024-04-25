@@ -1,0 +1,40 @@
+<mat-toolbar class="header" color="primary">
+  <span> Store online </span>
+
+  <div class="options">
+    <button class="icon cart" mat-icon-button matTooltip="Carrito" routerLink="/customer/shopping">
+      <mat-icon>add_shopping_cart</mat-icon>
+      <span class="cart__count" *ngIf="(totalItems$ | async) !== 0"> {{ totalItems$ | async }} </span>
+    </button>
+    <button mat-icon-button matTooltip="Notifications">
+      <mat-icon>notifications</mat-icon>
+    </button>
+    <button mat-icon-button matTooltip="My Account" [matMenuTriggerFor]="userAccountMenu">
+      <mat-icon>account_circle</mat-icon>
+    </button>
+    <mat-menu #userAccountMenu [overlapTrigger]="false" yPosition="below">
+      <button mat-menu-item routerLink="/customer/my-account">
+        <mat-icon>person</mat-icon><span>Mi cuenta</span>
+      </button>
+      <button mat-menu-item routerLink="/customer/change-password">
+        <mat-icon>settings</mat-icon><span>Ajustes</span>
+      </button>
+      <mat-divider></mat-divider>
+      <button mat-menu-item (click)="logout()">
+        <mat-icon>exit_to_app</mat-icon>
+        Cerrar sesión
+      </button>
+    </mat-menu>
+  </div>
+</mat-toolbar>
+
+<nav class="menu">
+  <ul class="menu__ul">
+    <li><a routerLink="/customer/gallery">Galería</a></li>
+    <li><a routerLink="/customer/contact">Contacto</a></li>
+  </ul>
+</nav>
+
+
+
+<router-outlet></router-outlet>

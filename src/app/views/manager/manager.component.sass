@@ -1,0 +1,33 @@
+.header
+  background: #374c75
+  height: 5rem
+
+.body
+  padding: 1rem 1rem 0rem 1rem
+  &--disabled
+    filter: grayscale(1) blur(1px) opacity(.7)
+    pointer-events: none
+    cursor: not-allowed
+
+.toolbar-item-spacer
+  flex: 1 1 auto
+
+.app-container
+  height: calc( 100vh - 5rem )
+  margin: 0
+  background: #dce8ef
+  &__label-welcome
+    font-weight: bold
+    text-align: center
+
+.app-sidenav
+  width: 230px
+
+.app-sidenav-content
+  display: flex
+  height: 100%
+  align-items: center
+  justify-content: center
+
+.menu-active
+  border-left: 0.3rem solid orange

@@ -1,0 +1,35 @@
+<h1 class="title"> {{ id ? 'Editar Categoria' : 'Agregar Categoria' }} </h1>
+
+<mat-divider></mat-divider>
+<br>
+ 
+<div class="wrapper">
+  <form class="form" [formGroup]="myForm" novalidate>
+
+    <mat-form-field class="form__input" appearance="fill">
+      <mat-label>Nombre</mat-label>
+      <input matInput formControlName="name">
+      <mat-error *ngIf="input['name'].touched && input['name'].invalid">
+        <span *ngIf="input['name'].errors">Nombre invalido</span>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="form__input" appearance="fill">
+      <mat-label>Imagen</mat-label>
+      <input matInput formControlName="image">
+      <mat-error *ngIf="input['image'].touched && input['image'].invalid">
+        <span *ngIf="input['image'].errors">Url de imagen invalido</span>
+      </mat-error>
+    </mat-form-field>
+
+    <button class="btn-access"
+      mat-raised-button
+      color="primary"
+      [disabled]="myForm.invalid"
+      (click)=" id ? update() : save()">
+      {{ id ? 'Actualizar' : 'Guardar' }}
+    </button>
+
+  </form>
+
+</div>

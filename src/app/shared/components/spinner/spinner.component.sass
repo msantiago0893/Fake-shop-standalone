@@ -1,0 +1,62 @@
+.prv-block-loader
+  display: hidden
+  left: 0
+  min-height: 100%
+  position: absolute
+  top: 0
+  width: 100%
+  z-index: 1999
+
+  &-content
+    position: absolute
+    left: 0
+    top: 0
+    width: 100%
+    height: 100%
+
+    &:hover
+      cursor: wait
+
+    &__linear
+      overflow: hidden
+      width: 100%
+      height: 1%
+      background-color: rgba(214,214,214,0.5)
+      margin: 0 auto
+
+    &__indeterminate
+      position: relative
+      width: 100%
+      height: 100%
+
+      &:before
+        content: ''
+        position: absolute
+        height: 100%
+        background-color: orange
+        animation: indeterminate_first 1s infinite ease-out
+
+      &:after
+        content: ''
+        position: absolute
+        height: 100%
+        background-color: #f09088
+        animation: indeterminate_second 1s infinite ease-in
+
+      @keyframes indeterminate_first
+        0%
+          left: -100%
+          width: 100%
+
+        100%
+          left: 100%
+          width: 10%
+
+      @keyframes indeterminate_second
+        0%
+          left: -150%
+          width: 100%
+
+        100%
+          left: 100%
+          width: 10%

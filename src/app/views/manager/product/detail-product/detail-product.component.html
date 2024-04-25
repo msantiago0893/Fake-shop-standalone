@@ -1,0 +1,21 @@
+<mat-icon class="return" [routerLink]="'/manager/products'">assignment_return</mat-icon>
+
+<div class="wrapper" [@slideInUp]>
+  <div class="card">
+    <ng-container *ngIf="product$ | async as product">
+      <h3 class="card__title">{{ product.title }}</h3>
+      <p class="card__text">Precio: {{ product.price | currency:'MXN ':'symbol':'1.2-2' }}</p>
+      <p class="card__text">Categoria: {{ product.category.name }}</p>
+      <div class="card__description">
+        <p>Descripción:</p>
+        <p>{{ product.description }}</p>
+      </div>
+      <p class="card__date">Fecha de creacion: {{ product.creationAt | date }}</p>
+      <p class="card__date">Fecha de actualizacion: {{ product.updatedAt | date }}</p>
+
+      <div class="images" *ngIf="product.images && product.images.length" >
+        <img class="images__img" *ngFor="let image of product.images" [src]="image" alt="product" appImage>
+      </div>
+    </ng-container>
+  </div>
+</div>

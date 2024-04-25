@@ -1,0 +1,161 @@
+<app-header></app-header>
+
+<form class="form" [formGroup]="myForm" novalidate>
+
+  <div class="form__content">
+    <h1 class="form__title">Registro</h1>
+
+    <h3 class="form__title--margin-left form__title--margin-top">Datos personales</h3>
+
+    <div class="form__personal">
+      <mat-form-field class="form__input" appearance="fill">
+        <mat-label>Nombre</mat-label>
+        <input matInput formControlName="name">
+        <mat-error *ngIf="input['name'].touched && input['name'].invalid">
+          <span *ngIf="input['name'].errors">Ingrese un nombre válido</span>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="form__input" appearance="fill">
+        <mat-label>Apellido paterno</mat-label>
+        <input matInput formControlName="firstName">
+        <mat-error *ngIf="input['firstName'].touched && input['firstName'].invalid">
+          <span *ngIf="input['firstName'].errors">Campo inválido</span>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="form__input" appearance="fill">
+        <mat-label>Apellido materno</mat-label>
+        <input matInput formControlName="secondtName">
+        <mat-error *ngIf="input['secondtName'].touched && input['firstName'].invalid">
+          <span *ngIf="input['secondtName'].errors">Campo inválido</span>
+        </mat-error>
+      </mat-form-field>
+
+      <section class="gender">
+        <label>Género:</label>
+        <mat-radio-group formControlName="gender">
+          <mat-radio-button class="genero__radio" value="M">Hombre</mat-radio-button>
+          <mat-radio-button value="F">Mujer</mat-radio-button>
+        </mat-radio-group>
+      </section>
+
+      <mat-form-field class="form__input" appearance="fill">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email">
+        <mat-error *ngIf="input['email'].touched && input['email'].invalid">
+          <span *ngIf="input['email'].errors">Campo inválido</span>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="form__input" appearance="fill">
+        <mat-label>Contraseña</mat-label>
+        <input matInput formControlName="password" [type]="hide ? 'password' : 'text'">
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        <mat-error *ngIf="input['password'].touched && input['password'].invalid">
+          <span *ngIf="input['password'].errors">Contraseña inválida</span>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="form__birthdate form__birthdate" appearance="fill">
+        <mat-label>Fecha de nacimiento</mat-label>
+        <div class="form__datepickerForm">
+          <input matInput [matDatepicker]="picker" formControlName="calendar">
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </div>
+        <mat-hint>MM/DD/YYYY</mat-hint>
+      </mat-form-field>
+
+      <mat-form-field class="form__input" appearance="fill">
+        <mat-label>Teléfono</mat-label>
+        <input matInput formControlName="telephone">
+        <mat-error *ngIf="input['telephone'].touched && input['telephone'].invalid">
+          <span *ngIf="input['telephone'].errors">Número de teléfono inválido</span>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="form__input" appearance="fill">
+        <mat-label>Celular</mat-label>
+        <input matInput formControlName="cellPhone">
+        <mat-error *ngIf="input['cellPhone'].touched && input['cellPhone'].invalid">
+          <span *ngIf="input['cellPhone'].errors">Número de celular inválido</span>
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <h3 class="form__title--margin-left form__title--margin-top">Dirección</h3>
+
+    <div class="form__personal">
+      <mat-form-field class="form__input" appearance="fill">
+        <mat-label>País</mat-label>
+        <input matInput formControlName="country">
+        <mat-error *ngIf="input['country'].touched && input['country'].invalid">
+          <span *ngIf="input['country'].errors">Ingrese un país válido</span>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="form__input" appearance="fill">
+        <mat-label>Estado</mat-label>
+        <input matInput formControlName="state">
+        <mat-error *ngIf="input['state'].touched && input['state'].invalid">
+          <span *ngIf="input['state'].errors">Ingrese un estado válido</span>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="form__input" appearance="fill">
+        <mat-label>Ciudad</mat-label>
+        <input matInput formControlName="city">
+        <mat-error *ngIf="input['city'].touched && input['city'].invalid">
+          <span *ngIf="input['city'].errors">Ingrese una ciudad válida</span>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="form__input" appearance="fill">
+        <mat-label>Municipio</mat-label>
+        <input matInput formControlName="municipality">
+        <mat-error *ngIf="input['municipality'].touched && input['municipality'].invalid">
+          <span *ngIf="input['municipality'].errors">Ingrese un municipio válido</span>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="form__input" appearance="fill">
+        <mat-label>Colonia</mat-label>
+        <input matInput formControlName="cologne">
+        <mat-error *ngIf="input['cologne'].touched && input['cologne'].invalid">
+          <span *ngIf="input['cologne'].errors">Ingrese una colonia válida</span>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="form__input" appearance="fill">
+        <mat-label>C.P.</mat-label>
+        <input matInput formControlName="postalCode">
+        <mat-error *ngIf="input['postalCode'].touched && input['postalCode'].invalid">
+          <span *ngIf="input['postalCode'].errors">Ingrese un código postal válido</span>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="form__input" appearance="fill">
+        <mat-label>Calle</mat-label>
+        <input matInput formControlName="street">
+        <mat-error *ngIf="input['street'].touched && input['street'].invalid">
+          <span *ngIf="input['street'].errors">Ingrese una calle válida</span>
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="wrap">
+      <mat-checkbox class="form__checkbox">
+        Acepto los términos y condiciones
+      </mat-checkbox>
+
+      <div class="wrap__btn">
+        <button class="btn" mat-raised-button color="primary" [disabled]="myForm.invalid"
+          (click)="save()">Guardar</button>
+      </div>
+    </div>
+  </div>
+</form>

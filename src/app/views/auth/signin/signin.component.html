@@ -1,0 +1,36 @@
+<app-header></app-header>
+
+<h1 *ngIf="(loading$ | async)">Cargando....</h1>
+
+<div class="form-wrapper">
+
+  <form class="form" [formGroup]="myForm" novalidate>
+
+    <img class="form__logo" src="assets/images/login.webp">
+
+    <mat-form-field class="form__input" appearance="fill">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email">
+      <mat-error *ngIf="input['email'].touched && input['email'].invalid">
+        <span *ngIf="input['email'].errors">Email invalido</span>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="form__input" appearance="fill">
+      <mat-label>Contraseña</mat-label>
+      <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hide">
+        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+      <mat-error *ngIf="input['password'].touched && input['password'].invalid">
+        <span *ngIf="input['password'].errors">contraseña invalido</span>
+      </mat-error>
+    </mat-form-field>
+
+    <button class="btn-access" mat-raised-button color="primary" [disabled]="myForm.invalid" (click)="access()" >Entrar</button>
+
+    <a class="text" mat-flat-button routerLink="/auth/forgot-password">Recuperar contraseña</a>
+  </form>
+
+</div>

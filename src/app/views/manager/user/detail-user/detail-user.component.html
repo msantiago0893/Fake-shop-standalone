@@ -1,0 +1,14 @@
+<mat-icon class="return" [routerLink]="'/manager/users'">assignment_return</mat-icon>
+
+<div class="wrapper" [@slideInUp]>
+  <div class="card">
+    <ng-container *ngIf="user$ | async as user">
+      <img class="card__img" [src]="user.avatar" alt="user" appImage>
+      <h3 class="card__title">{{ user.name }}</h3>
+      <p class="card__date card__date--padging-top">{{ user.email }}</p>
+      <p class="card__date card__date--padging-top">{{ user.role === 'admin' ? 'Administrador' : 'Cliente' }}</p>
+      <p class="card__date card__date--padging-top">Fecha de creacion: {{ user.creationAt | date }}</p>
+      <p class="card__date">Fecha de actualizacion: {{ user.updatedAt | date }}</p>
+    </ng-container>
+  </div>
+</div>

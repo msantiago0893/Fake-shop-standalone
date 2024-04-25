@@ -1,0 +1,12 @@
+<mat-icon class="return" [routerLink]="'/manager/categories'">assignment_return</mat-icon>
+
+<div class="wrapper" [@slideInUp]>
+  <div class="card">
+    <ng-container *ngIf="category$ | async as category">
+      <h3 class="card__title">{{ category.name }}</h3>
+      <img class="card__img" [src]="category.image" alt="category" appImage>
+      <p class="card__date card__date--padging-top">Fecha de creacion: {{ category.creationAt | date }}</p>
+      <p class="card__date">Fecha de actualizacion: {{ category.updatedAt | date }}</p>
+    </ng-container>
+  </div>
+</div>

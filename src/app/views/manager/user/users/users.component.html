@@ -1,0 +1,61 @@
+<div class="wrapper-empty" *ngIf="!dataSource.data.length">
+  <app-empty msg="No se encontraron usuarios">
+  </app-empty>
+</div>
+
+<div [hidden]="!dataSource.data.length">
+
+  <h1 class="title">USUARIOS</h1>
+
+  <div class="table">
+    <mat-form-field appearance="fill">
+      <mat-label>Buscar</mat-label>
+      <input matInput [(ngModel)]="search" placeholder="User" (keyup)="applyFilter()">
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+
+    <mat-table mat-table [dataSource]="dataSource">
+
+      <ng-container matColumnDef="id">
+        <th mat-header-cell class="custom-header-cell" *matHeaderCellDef> ID </th>
+        <td mat-cell class="custom-data-cell" *matCellDef="let element"> {{element.id}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell class="custom-header-cell" *matHeaderCellDef> Nombre </th>
+        <td mat-cell class="custom-data-cell" *matCellDef="let element"> {{element.name}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="email">
+        <th mat-header-cell class="custom-header-cell" *matHeaderCellDef> Email </th>
+        <td mat-cell class="custom-data-cell" *matCellDef="let element"> {{element.email}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="role">
+        <th mat-header-cell class="custom-header-cell" *matHeaderCellDef> Rol </th>
+        <td mat-cell class="custom-data-cell" *matCellDef="let element"> {{element.role === 'admin' ? 'Administrador' :
+          'Cliente' }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="operation">
+        <th mat-header-cell class="custom-header-cell" *matHeaderCellDef> Operación </th>
+        <td mat-cell class="custom-data-cell scrollable-cell" *matCellDef="let element">
+          <button mat-button color="primary" [routerLink]="['/manager/update-user', element.id]">Actualizar</button>
+          <button mat-button color="accent" (click)='delete(element.id)'>Eliminar</button>
+          <button mat-button color="warn" [routerLink]="['/manager/user', element.id]">Detalle</button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">No hay datos que coincidan con el filtro {{search}}"</td>
+      </tr>
+    </mat-table>
+
+    <mat-paginator [pageSizeOptions]="[10, 15, 20]" showFirstLastButtons aria-label="Select page of periodic elements">
+    </mat-paginator>
+  </div>
+</div>

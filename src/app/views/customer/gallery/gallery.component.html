@@ -1,0 +1,19 @@
+<h1>PRODUCTOS </h1>
+<mat-divider></mat-divider>
+
+<mat-form-field appearance="fill">
+  <mat-label> Buscar </mat-label>
+  <input matInput [(ngModel)]="search">
+  <mat-icon matSuffix>search</mat-icon>
+</mat-form-field>
+
+<div class="gallery">
+
+  <div class="card" *ngFor="let product of products() | filterProduct: search" [@fade]>
+    <img class="card__img" [src]="product.images.length && product.images[0]" alt="product" appImage>
+    <p class="card__text">{{ product.title }}</p>
+    <p class="card__text">{{ product.price | currency:'MXN ':'symbol':'1.2-2' }}</p>
+    <button mat-button color="primary" (click)="addCart(product)">Agregar al carrito </button>
+  </div>
+
+</div>
